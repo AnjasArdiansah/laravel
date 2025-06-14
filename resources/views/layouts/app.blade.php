@@ -24,16 +24,8 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('buku.index') }}">Buku</a>
                     </li>
-                    @auth
-                        @if(auth()->user()->is_admin)
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('kategori.index') }}">Kategori</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('admin.transaksi.index') }}">Transaksi</a>
-                            </li>
-                        @endif
-                    @endauth
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('kategori.index') }}">Kategori</a>
                 </ul>
                 <ul class="navbar-nav">
                     @auth

@@ -76,11 +76,6 @@ class TransaksiController extends Controller
         return view('transaksi.show', compact('transaksi'));
     }
 
-    public function adminIndex()
-    {
-        $transaksis = Transaksi::with('user')->get();
-        return view('admin.transaksi.index', compact('transaksis'));
-    }
 
     public function updateStatus(Request $request, Transaksi $transaksi)
     {
