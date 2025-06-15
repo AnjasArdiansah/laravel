@@ -13,6 +13,14 @@
         @endauth
     </div>
 
+    {{-- Form Pencarian --}}
+    <form action="{{ route('buku.index') }}" method="GET" class="mb-4">
+        <div class="input-group">
+            <input type="text" name="q" class="form-control" placeholder="Cari buku..." value="{{ request('q') }}">
+            <button class="btn btn-primary" type="submit">Cari</button>
+        </div>
+    </form>
+
     <div class="row">
         @foreach($bukus as $buku)
             <div class="col-md-4 mb-4">

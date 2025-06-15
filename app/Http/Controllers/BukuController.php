@@ -9,9 +9,18 @@ use Illuminate\Support\Facades\Storage;
 
 class BukuController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $bukus = Buku::with('kategori')->get();
+        $query = Buku::with('kategori');
+
+        if ($request->filled('q')) {
+            $query->where('judul', 'like', '%' . $request->q . '%');
+            // Jika ingin, tambahkan pencarian lain, misal penulis:
+            // $query->orWhere('penulis', 'like', '%' . $request->q . '%');
+        }
+
+        $bukus = $query->get();
+
         return view('buku.index', compact('bukus'));
     }
 
