@@ -1,9 +1,9 @@
+{{-- filepath: resources/views/layouts/app.blade.php --}}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Bukucape - @yield('title')</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
@@ -26,6 +26,14 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('kategori.index') }}">Kategori</a>
+                    </li>
+                    @auth
+                        @if(auth()->user()->is_admin)
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('admin.transaksi.index') }}">Transaksi Admin</a>
+                            </li>
+                        @endif
+                    @endauth
                 </ul>
                 <ul class="navbar-nav">
                     @auth
@@ -44,11 +52,12 @@
                                 {{ Auth::user()->name }}
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="{{ route('logout') }}"
-                                    onclick="event.preventDefault();
-                                                  document.getElementById('logout-form').submit();">
-                                     Logout
-                                 </a></li>
+                                <li>
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                        Logout
+                                    </a>
+                                </li>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                     @csrf
                                 </form>
@@ -83,7 +92,7 @@
 
     <footer class="bg-dark text-white py-4 mt-5">
         <div class="container text-center">
-            <p>&copy; 2023 Bukucape - Aplikasi Jual Beli Buku</p>
+            <p>&copy; 2025 Bukucape - Aplikasi Jual Beli Buku</p>
         </div>
     </footer>
 
